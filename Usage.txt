@@ -2,5 +2,9 @@ simply drop the OpenSim.AssetImage folder into addon-modules and run prebuild an
 
 Add the addiions from Robust.ini.addons to Robust.ini and configure to your liking
 
-Then start Robust and OpenSim and then go to a web browsr using the url http://yourloginurl.com:8002/image/imageuuid changing yourloginurl.com and imageuuid as needed
- You will then see the image in the web browser
+Then start Robust and OpenSim 
+
+Log inworld and get the uuid of any texture 
+Go to a web browsr using the url http://yourloginurl.com:8002/image/imageuuid changing yourloginurl.com and imageuuid as needed
+
+You will then see the image in the web browser
