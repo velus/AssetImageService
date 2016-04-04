@@ -53,6 +53,9 @@ namespace OpenSim.Addons.AssetImage
 	{
 		public static ManualResetEvent ev = new ManualResetEvent(true);
 
+		private static readonly ILog m_log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+
 		public AssetImageServerGetHandler() :
 		base("GET", "/image")
 		{
@@ -103,8 +106,11 @@ namespace OpenSim.Addons.AssetImage
 				}
 			catch (WebException ex)
 			{
-				throw ex;
+				m_log.ErrorFormat("[PROFILE]: Unable to connect to Region " +
+					"Server {0}.  Exception {1}", AssetImage.Url.ToString(), ex);
 			}
+			var bytei = default(byte[]);
+			return bytei;
 		}
 	}
 }
