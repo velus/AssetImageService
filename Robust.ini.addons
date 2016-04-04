@@ -3,4 +3,4 @@ AssetImage = "${Const|PublicPort}/OpenSim.Addons.AssetImage.dll:AssetImage"
 
 [AssetImageService]
 
-    Url = "http://yourregionurl:9000/ImageID="
+    Url = "http://yourregionurl:9000"

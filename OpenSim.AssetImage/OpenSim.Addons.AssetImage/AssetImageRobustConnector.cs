@@ -3,10 +3,8 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Threading;
-
 using Nini.Config;
 using log4net;
-
 using OpenSim.Server.Base;
 using OpenSim.Services.Interfaces;
 using OpenSim.Framework;
@@ -18,10 +16,9 @@ namespace OpenSim.Addons.AssetImage
 {
 	public class AssetImage : ServiceConnector
 	{
-		private IAssetImageService m_MapService;
+		//private IAssetImageService m_MapService;
 		public bool m_Enabled;
 		private static readonly ILog m_log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-		private string m_ConfigName;
 		public static string Url;
 
 		public AssetImage(IConfigSource config, IHttpServer server, string configName) :
@@ -47,7 +44,7 @@ namespace OpenSim.Addons.AssetImage
 			if (this.m_Enabled)
 			{
 			Url = @string;
-			server.AddStreamHandler(new AssetImageServerGetHandler(m_MapService));
+			server.AddStreamHandler(new AssetImageServerGetHandler());
 			}
 		}
 	}
@@ -56,7 +53,7 @@ namespace OpenSim.Addons.AssetImage
 	{
 		public static ManualResetEvent ev = new ManualResetEvent(true);
 
-		public AssetImageServerGetHandler(IAssetImageService service) :
+		public AssetImageServerGetHandler() :
 		base("GET", "/image")
 		{
 			
@@ -79,7 +76,7 @@ namespace OpenSim.Addons.AssetImage
 
 			}
 
-			HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(AssetImage.Url.ToString() + scopeID.ToString());
+			HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(AssetImage.Url.ToString() + "/ImageId="  + scopeID.ToString());
 			webRequest.Timeout = 30000; //30 Second Timeout
 
 			try

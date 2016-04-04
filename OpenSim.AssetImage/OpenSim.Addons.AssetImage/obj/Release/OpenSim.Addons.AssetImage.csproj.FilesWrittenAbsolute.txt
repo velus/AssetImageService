@@ -1,0 +1,3 @@
+/home/chris/Development/OpenSim-Stuff/currency_test/opensim/addon-modules/OpenSim.AssetImage/OpenSim.Addons.AssetImage/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/chris/Development/OpenSim-Stuff/currency_test/opensim/bin/OpenSim.Addons.AssetImage.dll
+/home/chris/Development/OpenSim-Stuff/currency_test/opensim/addon-modules/OpenSim.AssetImage/OpenSim.Addons.AssetImage/obj/Release/OpenSim.Addons.AssetImage.dll

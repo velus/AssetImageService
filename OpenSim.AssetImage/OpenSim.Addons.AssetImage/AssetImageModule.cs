@@ -6,26 +6,16 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Reflection;
-using System.Runtime.Remoting.Messaging;
-using System.Threading;
 using log4net;
 using Nini.Config;
 using OpenMetaverse;
 using OpenMetaverse.Imaging;
-//using OpenMetaverse.StructuredData;
 using Mono.Addins;
 using OpenSim.Framework;
-//using OpenSim.Framework.Capabilities;
-//using OpenSim.Framework.Monitoring;
 using OpenSim.Framework.Servers;
 using OpenSim.Framework.Servers.HttpServer;
 using OpenSim.Region.Framework.Interfaces;
 using OpenSim.Region.Framework.Scenes;
-//using OpenSim.Region.CoreModules.World.Land;
-//using Caps=OpenSim.Framework.Capabilities.Caps;
-//using OSDArray=OpenMetaverse.StructuredData.OSDArray;
-//using OSDMap=OpenMetaverse.StructuredData.OSDMap;
-using GridRegion = OpenSim.Services.Interfaces.GridRegion;
 
 [assembly: Addin("AssetImageModule", "0.1")]
 [assembly: AddinDependency("OpenSim.Region.Framework", OpenSim.VersionInfo.VersionNumber)]
@@ -33,7 +23,7 @@ using GridRegion = OpenSim.Services.Interfaces.GridRegion;
 namespace OpenSim.Addons.AssetImage
 {
 	[Extension(Path = "/OpenSim/RegionModules", NodeName = "RegionModule", Id = "AssetImageModule")]
-	public class AssetImageModule: INonSharedRegionModule, IAssetImageModule
+	public class AssetImageModule: INonSharedRegionModule
 	{
 
 		protected Scene m_scene;
@@ -43,7 +33,7 @@ namespace OpenSim.Addons.AssetImage
 		#region INonSharedRegionModule Members
 		public virtual void Initialise(IConfigSource config)
 		{
-			m_log.Debug("[IMAGE]: Starting");
+			m_log.Debug("[AssetImageModule]: Starting");
 		}
 
 		public virtual void AddRegion(Scene scene)
@@ -51,21 +41,18 @@ namespace OpenSim.Addons.AssetImage
 			lock (scene)
 			{
 				m_scene = scene;
-
-				m_scene.RegisterModuleInterface<IAssetImageModule>(this);
-
 				AddHandlers();
 			}
 		}
 
 		public virtual void RemoveRegion(Scene scene)
 		{
-			
+
 		}
 
 		public virtual void RegionLoaded(Scene scene)
 		{
-			
+
 		}
 
 		public virtual void Close()
@@ -111,7 +98,7 @@ namespace OpenSim.Addons.AssetImage
 
 			if (scopeID != UUID.Zero)
 			{
-				
+
 				if (myMapImageJPEG.Length == 0)
 				{
 					MemoryStream imgstream = null;
@@ -148,7 +135,7 @@ namespace OpenSim.Addons.AssetImage
 					catch (Exception)
 					{
 						// Dummy!
-						m_log.Warn("[IMAGE]: Unable to generate Image");
+						m_log.Warn("[AssetImageModule]: Unable to generate Image");
 					}
 					finally
 					{
@@ -180,7 +167,7 @@ namespace OpenSim.Addons.AssetImage
 
 		private void AddHandlers()
 		{
-			
+
 
 			string regionimage = "/ImageID=";
 			regionimage = regionimage.Replace("-", "");
